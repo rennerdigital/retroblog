@@ -20,6 +20,10 @@
                         <%= post.createdAt.toLocaleDateString() %>
                     </div>
                     <div class="card-text mb-2"><%= post.description %></div>
+                    <a href="posts/<%= post.id %>" class="btn btn-primary">fullpost.txt</a>
+                    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">delete.exe</button>
+                    </form>
                 </div>  
             </div>
         <% }) %>
