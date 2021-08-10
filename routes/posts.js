@@ -6,9 +6,9 @@ router.get('/new', (req, res) => {
     res.render('posts/new', { post: new Post() })
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', async (req, res) => {
     const post = await Post.findById(req.params.id)
-    res.render('/posts/edit', { post: new Post() })
+    res.render('posts/edit', { post: post })
 })
 
 router.get('/:id', async (req,res) => {
@@ -17,24 +17,34 @@ router.get('/:id', async (req,res) => {
     res.render('posts/show', { post: post })
 })
 
-router.post('/', async (req, res) => {
-    let post = new Post({
-        title: req.body.title,
-        description: req.body.description,
-        markdown: req.body.markdown,
-    })
-    try {
-        post = await post.save()
-        res.redirect(`/posts/${post.id}`)
-    } catch (e) {
-        console.log(e)
-        res.render('posts/new', { post: post })
-    }
-})
+router.post('/', async (req, res, next) => {
+    req.post = new Post()
+    next()
+}, savePostAndRedirect('new'))
+
+router.put('/:id', async (req, res, next) => {
+    req.post = await Post.findById(req.params.id)
+    next()
+}, savePostAndRedirect('edit'))
 
 router.delete('/:id', async (req,res) => {
     await Post.findByIdAndDelete(req.params.id)
     res.redirect('/')
 })
+
+function savePostAndRedirect(path) {
+    return async (req, res) => {
+        let post = req.post
+            post.title = req.body.title,
+            post.description = req.body.description,
+            post.markdown = req.body.markdown
+        try {
+            post = await post.save()
+            res.redirect(`/posts/${post.id}`)
+        } catch (e) {
+            res.render(`posts/${path}`, { post: post })
+        }
+    }
+}
 
 module.exports = router
