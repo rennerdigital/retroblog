@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/retroblog', { useNewUrlParser: true, useUn
 
 app.set('view engine', 'ejs')
 
-app.use('/posts', postRouter)
+app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
     const posts = [{
@@ -23,5 +23,7 @@ app.get('/', (req, res) => {
     }]
     res.render('posts/index', { posts: posts })
 })
+
+app.use('/posts', postRouter)
 
 app.listen(3000)
