@@ -5,6 +5,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Post = require('./models/post')
 const postRouter = require('./routes/posts')
+const indexRouter = require('./routes/index')
 const methodOverride = require('method-override')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -37,10 +38,11 @@ app.use(passport.session());
 
 app.get('/', async (req, res) => {
     const posts = await Post.find().sort({ createdAt: 'desc' })
-    res.render('posts/index', { posts: posts })
+    res.render('posts/index', { posts: posts,user:req.user })
 })
 
 app.use('/posts', postRouter)
+app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

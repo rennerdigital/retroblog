@@ -30,13 +30,13 @@ passport.use(new GoogleStrategy({
   
 ));
 
-passport.serializeUser(function(student, done) {
-    done(null, student.id);
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    Student.findById(id, function(err, student) {
-      done(err, student);
+  User.findById(id, function(err, user) {
+      done(err, user);
     });
   });
 

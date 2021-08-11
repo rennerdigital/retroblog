@@ -28,6 +28,11 @@ router.put('/:id', async (req, res, next) => {
     next()
 }, savePostAndRedirect('edit'))
 
+router.put('/like/:id/:likes', async (req, res, next) => {
+    req.post = await Post.findById(req.params.id)
+    next()
+}, updateLikes('posts'))
+
 router.delete('/:id', async (req,res) => {
     await Post.findByIdAndDelete(req.params.id)
     res.redirect('/')
@@ -48,25 +53,18 @@ function savePostAndRedirect(path) {
     }
 }
 
-// Google OAuth login route
-router.get('/auth/google', passport.authenticate(
-    'google',
-    { scope: ['profile', 'email'] }
-  ));
-
-  // Google OAuth callback route
-router.get('/oauth2callback', passport.authenticate(
-    'google',
-    {
-      successRedirect : '/',
-      failureRedirect : '/'
+function updateLikes(path) {
+    return async (req, res) => {
+        let post = req.post
+            post.likes = req.params.likes
+        try {
+            post = await post.save()
+           // res.send(post)
+            res.redirect(`/posts/${post.id}`)
+        } catch (e) {
+            res.render(`posts/${path}`, { post: post })
+        }
     }
-  ));
+}
 
-  // OAuth logout route
-router.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/students');
-  });
-
-module.exports = router
+module.exports = router;
