@@ -1,6 +1,7 @@
 const express = require('express')
 const Post = require('./../models/post')
 const router = express.Router()
+const passport = require('passport')
 
 router.get('/new', (req, res) => {
     res.render('posts/new', { post: new Post() })
@@ -46,5 +47,26 @@ function savePostAndRedirect(path) {
         }
     }
 }
+
+// Google OAuth login route
+router.get('/auth/google', passport.authenticate(
+    'google',
+    { scope: ['profile', 'email'] }
+  ));
+
+  // Google OAuth callback route
+router.get('/oauth2callback', passport.authenticate(
+    'google',
+    {
+      successRedirect : '/',
+      failureRedirect : '/'
+    }
+  ));
+
+  // OAuth logout route
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/students');
+  });
 
 module.exports = router
