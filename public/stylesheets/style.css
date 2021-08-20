@@ -30,6 +30,7 @@ label {
 
 h1, p {
     color: lime;
+    text-align: center;
 }
 
 li {

@@ -16,3 +16,10 @@ label {
 h1, p {
     color: deeppink !important;
 }
+
+.btn {
+    color: deeppink !important;
+    background-color: dimgrey;
+    border: none;
+    opacity: 90%;
+}
