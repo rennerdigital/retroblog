@@ -9,6 +9,8 @@ const indexRouter = require('./routes/index')
 const methodOverride = require('method-override')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var MemoryStore = require('memorystore')(session);
+
 var passport = require('passport');
 require('dotenv').config();
 
@@ -30,6 +32,9 @@ app.use(cookieParser());
 app.use(session({
   secret: 'SEIRocks!',
   resave: false,
+  store: new MemoryStore({
+    checkPeriod: 86400000
+  }),
   saveUninitialized: true
 }));
 app.use(passport.initialize());
