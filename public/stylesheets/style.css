@@ -28,9 +28,13 @@ label {
     color: lime;
 }
 
-h1, p {
+h1 {
     color: lime;
     text-align: center;
+}
+
+p {
+    color: lime;
 }
 
 li {
