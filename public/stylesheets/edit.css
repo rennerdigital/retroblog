@@ -1,0 +1,10 @@
+body{
+    background-image: url('https://jakevdp.github.io/images/mario.gif') !important;
+    background-size: cover;
+    
+    
+    
+    height: 100vh;
+    padding:0;
+    margin:0;
+}

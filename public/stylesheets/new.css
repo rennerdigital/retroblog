@@ -1,0 +1,10 @@
+body{
+    background-image: url('https://community.esri.com/t5/image/serverpage/image-id/4885i467C0BE0C2DA2708/image-size/large/is-moderation-mode/true?v=v2&px=999') !important;
+    background-size: cover;
+    
+    
+    
+    height: 100vh;
+    padding:0;
+    margin:0;
+}

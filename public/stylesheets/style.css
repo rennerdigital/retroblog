@@ -14,3 +14,28 @@ body{
     padding:0;
     margin:0;
 }
+
+.form-control {
+    opacity: 75%;
+}
+
+label {
+    color: white;
+}
+
+h1, p {
+    color: white;
+}
+
+li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.card {
+    opacity: 75%;
+}
+
+.btn {
+    opacity: 90%;
+}
