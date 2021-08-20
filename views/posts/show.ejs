@@ -14,7 +14,9 @@
         <%- post.sanitizedHtml %>
     </div>
         <div>
+                <div class="likes">
                 <%- post.likes %>
+                </div>
                 <form action="/posts/like/<%= post.id %>/<%= post.likes+1 %>?_method=PUT" method="POST" class="d-inline">
                     <button type="submit" class="btn btn-success">Like</button>
                 </form>

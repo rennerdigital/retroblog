@@ -8,3 +8,11 @@ body{
     padding:0;
     margin:0;
 }
+
+label {
+    color: deeppink !important;
+}
+
+h1, p {
+    color: deeppink !important;
+}

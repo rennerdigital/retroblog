@@ -8,3 +8,17 @@ body{
     padding:0;
     margin:0;
 }
+
+label {
+    color: white !important;
+}
+
+h1, p {
+    color: white !important;
+}
+
+.btn {
+    color: white !important;
+    background-color: dimgrey;
+    border: none;
+}
