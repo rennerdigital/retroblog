@@ -1,6 +1,7 @@
 <img src="https://i.imgur.com/kZoEowd.png">
 
 # [RetroBlog](https://theretroblog.herokuapp.com/) - made by a developer who likes MS-DOS font. - Capstone Project #3 for General Assembly's Software Engineering Program.
+### *please note this app is not yet optimized for mobile phones
 
 ## Planning
 ### [Trello Board](https://trello.com/b/z9ambe6o/retroblog)
